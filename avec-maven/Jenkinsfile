@@ -6,6 +6,11 @@ pipeline {
                         sh """mvn -version"""
                     }
         }
+        stage('Checkout') {
+          steps {
+            checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/Oumayma-Bah/tp_esprit.git']]])
+          }
+        }
         stage('Afficher la date système') {
               steps {
                 sh 'date'
