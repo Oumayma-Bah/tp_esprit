@@ -1,17 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout git') {
-            steps {
-                echo "Pulling..."
-                  git branch 'main'
-                  url : 'https://github.com/Oumayma-Bah/tp_esprit.git'
-            }
-        }
         stage('Testing Maven') {
                     steps {
                         sh """mvn -version"""
                     }
-                }
+        }
+        stage('Afficher la date système') {
+              steps {
+                sh 'date'
+              }
+        }
     }
 }
