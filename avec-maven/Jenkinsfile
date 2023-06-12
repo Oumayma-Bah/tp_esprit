@@ -4,8 +4,8 @@ pipeline {
         stage('Checkout git') {
             steps {
                 echo "Pulling..."
-                  git branch 'main'
-                  url : 'https://github.com/Oumayma-Bah/tp_esprit.git'
+                git branch 'main'
+                url : 'https://github.com/Oumayma-Bah/tp_esprit.git'
             }
         }
         stage('Testing Maven') {
