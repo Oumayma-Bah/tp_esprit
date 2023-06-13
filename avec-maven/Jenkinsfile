@@ -14,7 +14,9 @@ pipeline {
         stage('GIT') {
                     steps {
                         echo "getting project from git"
-                        git 'https://github.com/Oumayma-Bah/tp_esprit.git'
+                        withCredentials([usernamePassword(credentialsId: 'b746e1b5-725b-4f40-8058-804123acf9aa', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                            git branch: 'main', credentialsId: 'b746e1b5-725b-4f40-8058-804123acf9aa', url: 'https://github.com/Oumayma-Bah/tp_esprit.git'
+                        }
                     }
         }
         stage('MVN CLEAN') {
