@@ -38,7 +38,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: '4b2d9ca2-2d87-41be-b9ec-7681caea0426', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         withSonarQubeEnv('SonarQube') {
-                            sh "mvn sonar:sonar -Dsonar.login=$USERNAME -Dsonar.password=$PASSWORD"
+                            sh "mvn sonar:sonar"
                         }
                     }
                 }
