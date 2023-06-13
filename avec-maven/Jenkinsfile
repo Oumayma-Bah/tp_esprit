@@ -37,9 +37,7 @@ pipeline {
                  steps {
                     dir('avec-maven'){
                         withSonarQubeEnv('SonarQube') {
-                            withCredentials([string(credentialsId: 'root', variable: 'SONAR_PASSWORD')]) {
-                                 sh 'mvn sonar:sonar -Dsonar.login=${env.SONAR_PASSWORD}'
-                            }
+                            sh 'mvn sonar:sonar'
                         }
                     }
                  }
