@@ -28,17 +28,21 @@ pipeline {
         }
         stage('MVN COMPILE') {
                     steps {
+                    dir('avec-maven'){
                         sh 'mvn compile'
+                        }
                     }
         }
         stage('MVN SONARQUBE') {
-                    steps {
+                 steps {
+                    dir('avec-maven'){
                         withSonarQubeEnv('SonarQube') {
                             withCredentials([string(credentialsId: 'root', variable: 'SONAR_PASSWORD')]) {
                                  sh 'mvn sonar:sonar -Dsonar.login=${env.SONAR_PASSWORD}'
                             }
                         }
                     }
+                 }
         }
 
     }
