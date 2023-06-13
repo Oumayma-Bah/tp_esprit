@@ -21,7 +21,9 @@ pipeline {
         }
         stage('MVN CLEAN') {
                     steps {
+                    dir('avec-maven'){
                         sh 'mvn clean'
+                        }
                     }
         }
         stage('MVN COMPILE') {
