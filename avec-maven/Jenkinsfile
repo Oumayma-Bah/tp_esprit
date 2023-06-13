@@ -11,5 +11,31 @@ pipeline {
                 sh 'date'
               }
         }
+        stage('GIT') {
+                    steps {
+                        echo "getting project from git"
+                        git 'https://github.com/Oumayma-Bah/tp_esprit.git'
+                    }
+        }
+        stage('MVN CLEAN') {
+                    steps {
+                        sh 'mvn clean'
+                    }
+        }
+        stage('MVN COMPILE') {
+                    steps {
+                        sh 'mvn compile'
+                    }
+        }
+        stage('MVN SONARQUBE') {
+                    steps {
+                        withSonarQubeEnv('SonarQube') {
+                            withCredentials([string(credentialsId: 'root', variable: 'SONAR_PASSWORD')]) {
+                                 sh 'mvn sonar:sonar -Dsonar.login=${env.SONAR_PASSWORD}'
+                            }
+                        }
+                    }
+        }
+
     }
 }
